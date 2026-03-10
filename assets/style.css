@@ -111,16 +111,62 @@ h1 {
   color: rgba(255,255,255,0.85);
 }
 
+/* Message card: cake image + text inside same block */
 .message-wrap {
   min-height: 7rem;
   margin: 1rem 0 1.5rem;
-  padding: 1rem 0.75rem;
-  background: rgba(255,255,255,0.22);
-  backdrop-filter: blur(10px);
-  -webkit-backdrop-filter: blur(10px);
-  border-radius: 1rem;
-  border: 1px solid rgba(255,255,255,0.35);
-  box-shadow: 0 8px 32px rgba(0,0,0,0.08);
+  padding: 1.1rem 0.9rem 1.15rem;
+  background: linear-gradient(145deg, rgba(252, 228, 236, 0.88) 0%, rgba(248, 187, 217, 0.85) 35%, rgba(244, 143, 177, 0.82) 70%, rgba(236, 64, 122, 0.78) 100%);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border-radius: 1.1rem;
+  border: 2px solid rgba(183, 28, 28, 0.4);
+  box-shadow:
+    0 10px 32px rgba(183, 28, 28, 0.2),
+    inset 0 1px 0 rgba(255, 255, 255, 0.4);
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+.message-wrap__cake,
+.message-wrap #typedMessage {
+  position: relative;
+  z-index: 1;
+}
+.message-wrap__cake {
+  flex-shrink: 0;
+}
+.message-wrap__cake img {
+  display: block;
+  width: clamp(100px, 22vw, 160px);
+  height: auto;
+  max-height: 200px;
+  object-fit: contain;
+  filter: drop-shadow(0 6px 16px rgba(0, 0, 0, 0.15));
+}
+.message-wrap #typedMessage {
+  flex: 1;
+  min-width: 0;
+}
+@media (max-width: 420px) {
+  .message-wrap {
+    flex-direction: column;
+  }
+  .message-wrap__cake img {
+    max-height: 160px;
+  }
+}
+
+.message-wrap::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(circle at 0% 0%, rgba(255,255,255,0.25), transparent 55%);
+  pointer-events: none;
+  opacity: 0.7;
 }
 
 /* Top message reveal */
@@ -135,10 +181,10 @@ h1 {
 
 #typedMessage {
   font-size: clamp(0.9rem, 3.5vw, 1.1rem);
-  color: #fff;
+  color: #4a1530;
   line-height: 1.75;
   font-weight: 600;
-  text-shadow: 0 1px 4px rgba(0,0,0,0.12);
+  text-shadow: 0 1px 3px rgba(255,255,255,0.7);
 }
 
 #typedMessage::after {
@@ -299,25 +345,30 @@ h1 {
   text-align: center;
 }
 
-/* Memory timeline */
-.timeline {
+/* Memory timeline — pink card with red rose (forced so it always shows in modal) */
+.timeline,
+.memories-modal__panel .timeline {
   margin: 0.8rem 0 1rem;
   padding: 1rem 1rem 1.1rem;
-  background: rgba(255,255,255,0.18);
+  background: linear-gradient(145deg, rgba(252, 228, 236, 0.88) 0%, rgba(248, 187, 217, 0.85) 35%, rgba(244, 143, 177, 0.82) 70%, rgba(236, 64, 122, 0.78) 100%) !important;
   backdrop-filter: blur(12px);
   -webkit-backdrop-filter: blur(12px);
   border-radius: 1rem;
-  border: 1px solid rgba(255,255,255,0.4);
-  box-shadow: 0 8px 28px rgba(0,0,0,0.1);
+  border: 2px solid rgba(183, 28, 28, 0.4);
+  box-shadow:
+    0 8px 28px rgba(183, 28, 28, 0.18),
+    inset 0 1px 0 rgba(255, 255, 255, 0.4);
   text-align: left;
+  position: relative;
 }
 .timeline h2 {
   text-align: center;
   font-size: clamp(0.85rem, 3.2vw, 1rem);
   font-weight: 800;
-  color: rgba(255,255,255,0.95);
+  color: #880e4f;
   margin-bottom: 0.85rem;
   letter-spacing: 0.03em;
+  text-shadow: 0 1px 2px rgba(255, 255, 255, 0.5);
 }
 .timeline ul {
   list-style: none;
@@ -332,27 +383,33 @@ h1 {
   gap: 0.65rem;
   align-items: start;
 }
-.dot {
+.timeline .dot {
   width: 0.75rem;
   height: 0.75rem;
   border-radius: 999px;
-  background: rgba(255,255,255,0.92);
-  box-shadow: 0 0 0 4px rgba(255,255,255,0.18);
+  background: radial-gradient(circle at 30% 30%, #c62828, #b71c1c);
+  box-shadow: 0 0 0 3px rgba(183, 28, 28, 0.35);
   margin-top: 0.25rem;
 }
-.moment .date {
+.timeline .moment .date,
+.memories-modal__panel .timeline .date {
   font-weight: 800;
-  color: #fff;
+  color: #6a1b3d !important;
   font-size: 0.92rem;
   line-height: 1.25;
-  text-shadow: 0 1px 6px rgba(0,0,0,0.14);
+  text-shadow: 0 1px 2px rgba(255, 255, 255, 0.5);
 }
-.moment .text {
+.timeline .moment .text,
+.memories-modal__panel .timeline .text {
   margin-top: 0.15rem;
-  color: rgba(255,255,255,0.93);
+  color: #4a1530 !important;
   font-weight: 600;
   font-size: 0.88rem;
   line-height: 1.6;
+}
+.timeline h2,
+.memories-modal__panel .timeline h2 {
+  color: #880e4f !important;
 }
 
 /* Memories dialog */
