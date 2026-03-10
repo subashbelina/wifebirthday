@@ -3,7 +3,7 @@ Happy Birthday sound
 
 Add your music file here as:
 
-  happy-birthday.mp3
+  Happy-birthday.mp3   (capital H — must match index.html)
 
 Optional second format (some browsers):
   happy-birthday.ogg
