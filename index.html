@@ -1,0 +1,474 @@
+<!DOCTYPE html>
+<html lang="ne">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="theme-color" content="#e91e63" />
+  <title>जन्मदिनको शुभकामना ❤️</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Devanagari:wght@500;600;700;800&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html {
+      -webkit-text-size-adjust: 100%;
+      height: 100%;
+    }
+    body {
+      min-height: 100%;
+      min-height: -webkit-fill-available;
+      font-family: "Noto Sans Devanagari", "Mukta", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      background: linear-gradient(160deg, #ff6b9d 0%, #c44569 25%, #e84a5f 50%, #ff7979 75%, #f8b500 100%);
+      background-attachment: fixed;
+      overflow-x: hidden;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 1rem;
+      padding-bottom: max(1rem, env(safe-area-inset-bottom));
+      padding-top: max(1rem, env(safe-area-inset-top));
+    }
+
+    .container {
+      position: relative;
+      width: 100%;
+      max-width: 36rem;
+      text-align: center;
+      z-index: 2;
+    }
+
+    h1 {
+      font-size: clamp(1.75rem, 8vw, 2.75rem);
+      font-weight: 800;
+      color: #fff;
+      text-shadow: 0 2px 20px rgba(0,0,0,0.15), 0 0 40px rgba(255,255,255,0.3);
+      margin-bottom: 1.25rem;
+      letter-spacing: 0.02em;
+      line-height: 1.2;
+    }
+
+    /* Birth date details card */
+    .birth-details {
+      margin-bottom: 1rem;
+      padding: 1rem 1rem 1.1rem;
+      background: rgba(255,255,255,0.18);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border-radius: 1rem;
+      border: 1px solid rgba(255,255,255,0.4);
+      box-shadow: 0 8px 28px rgba(0,0,0,0.1);
+      text-align: center;
+    }
+    .birth-details h2 {
+      font-size: clamp(0.8rem, 3vw, 0.95rem);
+      font-weight: 700;
+      color: rgba(255,255,255,0.95);
+      text-transform: none;
+      margin-bottom: 0.65rem;
+      letter-spacing: 0.04em;
+    }
+    .birth-details .date-line {
+      font-size: clamp(1rem, 4vw, 1.25rem);
+      font-weight: 800;
+      color: #fff;
+      text-shadow: 0 1px 8px rgba(0,0,0,0.15);
+      margin-bottom: 0.5rem;
+      line-height: 1.4;
+    }
+    .birth-details .sub {
+      font-size: clamp(0.8rem, 3.2vw, 0.95rem);
+      font-weight: 600;
+      color: rgba(255,255,255,0.92);
+      line-height: 1.6;
+      margin-top: 0.35rem;
+    }
+    .birth-details .divider {
+      height: 1px;
+      background: linear-gradient(90deg, transparent, rgba(255,255,255,0.5), transparent);
+      margin: 0.65rem 0;
+    }
+    .birth-details .en {
+      font-size: clamp(0.75rem, 2.8vw, 0.88rem);
+      font-weight: 500;
+      color: rgba(255,255,255,0.85);
+    }
+
+    .message-wrap {
+      min-height: 7rem;
+      margin: 1rem 0 1.5rem;
+      padding: 1rem 0.75rem;
+      background: rgba(255,255,255,0.22);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      border-radius: 1rem;
+      border: 1px solid rgba(255,255,255,0.35);
+      box-shadow: 0 8px 32px rgba(0,0,0,0.08);
+    }
+
+    #typedMessage {
+      font-size: clamp(0.9rem, 3.5vw, 1.1rem);
+      color: #fff;
+      line-height: 1.75;
+      font-weight: 600;
+      text-shadow: 0 1px 4px rgba(0,0,0,0.12);
+    }
+
+    #typedMessage::after {
+      content: "";
+      display: inline-block;
+      width: 2px;
+      height: 1em;
+      background: #fff;
+      margin-left: 2px;
+      vertical-align: -0.1em;
+      animation: blink 0.8s step-end infinite;
+    }
+    #typedMessage.done::after { display: none; }
+
+    @keyframes blink { 50% { opacity: 0; } }
+
+    .btn {
+      appearance: none;
+      -webkit-appearance: none;
+      border: none;
+      cursor: pointer;
+      padding: 0.9rem 1.75rem;
+      font-size: 1rem;
+      font-weight: 700;
+      color: #c44569;
+      background: linear-gradient(180deg, #fff 0%, #ffe4ec 100%);
+      border-radius: 999px;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.15), 0 0 0 3px rgba(255,255,255,0.4);
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+      touch-action: manipulation;
+    }
+    .btn:active {
+      transform: scale(0.97);
+    }
+    .btn:disabled {
+      opacity: 0.85;
+      cursor: default;
+    }
+
+    /* Photo gallery — add your images to the images/ folder */
+    .photo-gallery {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 0.5rem;
+      margin-bottom: 1rem;
+      width: 100%;
+    }
+    @media (max-width: 380px) {
+      .photo-gallery { grid-template-columns: 1fr 1fr; }
+    }
+    .gallery-item {
+      position: relative;
+      aspect-ratio: 1;
+      border-radius: 0.75rem;
+      overflow: hidden;
+      border: 2px solid rgba(255,255,255,0.45);
+      box-shadow: 0 6px 20px rgba(0,0,0,0.12);
+      background: rgba(255,255,255,0.15);
+    }
+    .gallery-item img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+      vertical-align: middle;
+    }
+    .gallery-label {
+      font-size: 0.75rem;
+      font-weight: 600;
+      color: rgba(255,255,255,0.9);
+      margin-bottom: 0.4rem;
+      text-align: center;
+    }
+
+    /* Audio control bar */
+    .audio-bar {
+      display: none;
+      align-items: center;
+      justify-content: center;
+      gap: 0.5rem;
+      margin-top: 0.75rem;
+      flex-wrap: wrap;
+    }
+    .audio-bar.visible { display: flex; }
+    .audio-bar button {
+      appearance: none;
+      -webkit-appearance: none;
+      border: none;
+      cursor: pointer;
+      padding: 0.5rem 1rem;
+      font-size: 0.9rem;
+      font-weight: 700;
+      font-family: inherit;
+      color: #c44569;
+      background: rgba(255,255,255,0.95);
+      border-radius: 999px;
+      box-shadow: 0 2px 12px rgba(0,0,0,0.1);
+      touch-action: manipulation;
+    }
+    .audio-bar button:active { transform: scale(0.96); }
+    .audio-bar span {
+      font-size: 0.85rem;
+      font-weight: 600;
+      color: rgba(255,255,255,0.95);
+    }
+
+    /* Floating hearts layer */
+    .hearts-layer {
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      overflow: hidden;
+      z-index: 1;
+    }
+    .heart {
+      position: absolute;
+      font-size: clamp(14px, 4vw, 22px);
+      opacity: 0;
+      animation: floatHeart var(--dur) ease-in-out infinite;
+      animation-delay: var(--delay);
+      bottom: -10%;
+      left: var(--x);
+    }
+    @keyframes floatHeart {
+      0% { transform: translateY(0) rotate(0deg) scale(0.5); opacity: 0; }
+      10% { opacity: 0.9; }
+      90% { opacity: 0.7; }
+      100% { transform: translateY(-110vh) rotate(var(--rot)) scale(1); opacity: 0; }
+    }
+
+    /* Rising balloons/confetti container */
+    .fx-layer {
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      overflow: hidden;
+      z-index: 0;
+    }
+    .balloon {
+      position: absolute;
+      bottom: -80px;
+      width: 28px;
+      height: 36px;
+      border-radius: 50% 50% 50% 50% / 60% 60% 40% 40%;
+      animation: rise linear forwards;
+      box-shadow: inset -4px -4px 8px rgba(0,0,0,0.1);
+    }
+    .balloon::after {
+      content: "";
+      position: absolute;
+      left: 50%;
+      bottom: -20px;
+      width: 2px;
+      height: 24px;
+      background: rgba(255,255,255,0.5);
+      transform: translateX(-50%);
+    }
+    @keyframes rise {
+      to {
+        transform: translateY(calc(-100vh - 100px)) rotate(var(--spin));
+        opacity: 0.3;
+      }
+    }
+
+    .confetti {
+      position: absolute;
+      bottom: 0;
+      width: 8px;
+      height: 8px;
+      animation: confettiRise linear forwards;
+    }
+    @keyframes confettiRise {
+      to {
+        transform: translateY(-100vh) translateX(var(--drift)) rotate(720deg);
+        opacity: 0;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="fx-layer" id="fxLayer" aria-hidden="true"></div>
+  <div class="hearts-layer" id="heartsLayer" aria-hidden="true"></div>
+
+  <div class="container">
+    <h1>शुभ जन्मदिन, मेरी प्रिय ❤️</h1>
+
+    <div class="birth-details" aria-label="जन्म मिति विवरण">
+      <h2>🎂 जन्म मिति विवरण</h2>
+      <p class="date-line">इ.सं. १९९९ मार्च १९</p>
+      <p class="en">March 19, 1999 (AD)</p>
+      <div class="divider"></div>
+      <p class="sub">नेपाली पात्रो (वि.सं.)</p>
+      <p class="date-line">२०५५ साल · चैत्र महिना · ५ गते</p>
+      <p class="sub">वर्ष २०५५ · अन्तिम महिना चैत्र · शुक्रवार जन्म</p>
+      <p class="en">Bikram Sambat 2055, Chaitra 5 — Friday</p>
+    </div>
+
+    <!-- Put your photos in WifeBirthday/images/ as photo1.jpg, photo2.jpg, photo3.jpg (or edit src below) -->
+    <p class="gallery-label">📷 हाम्रा सम्झनाहरू</p>
+    <div class="photo-gallery" id="photoGallery">
+      <div class="gallery-item">
+        <img src="images/photo1.jpg" alt="सम्झना १" loading="lazy" width="400" height="400"
+          onerror="this.closest('.gallery-item').style.display='none'" />
+      </div>
+      <div class="gallery-item">
+        <img src="images/photo2.jpg" alt="सम्झना २" loading="lazy" width="400" height="400"
+          onerror="this.closest('.gallery-item').style.display='none'" />
+      </div>
+      <div class="gallery-item">
+        <img src="images/photo3.jpg" alt="सम्झना ३" loading="lazy" width="400" height="400"
+          onerror="this.closest('.gallery-item').style.display='none'" />
+      </div>
+    </div>
+
+    <div class="message-wrap">
+      <p id="typedMessage" aria-live="polite"></p>
+    </div>
+    <button type="button" class="btn" id="surpriseBtn">एक थिचो, हजार मुस्कान ✨</button>
+
+    <!-- Happy Birthday sound: add WifeBirthday/audio/Happy-birthday.mp3 -->
+    <audio id="birthdayAudio" preload="auto" loop playsinline>
+      <source src="audio/Happy-birthday.mp3" type="audio/mpeg" />
+      <source src="audio/happy-birthday.ogg" type="audio/ogg" />
+    </audio>
+    <div class="audio-bar" id="audioBar" aria-live="polite">
+      <span>🎵 जन्मदिन गीत</span>
+      <button type="button" id="audioToggle" aria-pressed="true">रोक्नुहोस्</button>
+    </div>
+  </div>
+
+  <script>
+    (function () {
+      var fullMessage = "प्रिय मेरी सुन्दर श्रीमती, जन्मदिनको असीम शुभकामना 🎂 तिमी मेरो जीवनको सबैभन्दा मूल्यवान उपहार हौ — तिम्रो मुस्कान नै मेरो संसार, तिम्रो साथ नै मेरो शान्ति । हजार जन्म पनि कम भए तिमीजस्तो जीवनसाथी पाउन । म तिमीलाई अनन्त माया गर्छु, सधैँ गर्नेछु 💖";
+      var typedEl = document.getElementById("typedMessage");
+      var btn = document.getElementById("surpriseBtn");
+      var heartsLayer = document.getElementById("heartsLayer");
+      var fxLayer = document.getElementById("fxLayer");
+      var started = false;
+      var typeIndex = 0;
+      var typeTimer = null;
+      var birthdayAudio = document.getElementById("birthdayAudio");
+      var audioBar = document.getElementById("audioBar");
+      var audioToggle = document.getElementById("audioToggle");
+
+      function playBirthdaySound() {
+        if (!birthdayAudio) return;
+        birthdayAudio.volume = 0.85;
+        var p = birthdayAudio.play();
+        if (p && typeof p.then === "function") {
+          p.then(function () {
+            if (audioBar) audioBar.classList.add("visible");
+          }).catch(function () {
+            /* No file or autoplay blocked — show bar so user can tap play in controls if needed */
+            if (audioBar) audioBar.classList.add("visible");
+            if (audioToggle) audioToggle.textContent = "बजाउनुहोस्";
+          });
+        } else {
+          if (audioBar) audioBar.classList.add("visible");
+        }
+      }
+
+      if (audioToggle && birthdayAudio) {
+        audioToggle.addEventListener("click", function () {
+          if (birthdayAudio.paused) {
+            birthdayAudio.play();
+            audioToggle.textContent = "रोक्नुहोस्";
+            audioToggle.setAttribute("aria-pressed", "true");
+          } else {
+            birthdayAudio.pause();
+            audioToggle.textContent = "बजाउनुहोस्";
+            audioToggle.setAttribute("aria-pressed", "false");
+          }
+        });
+      }
+
+      var heartChars = ["❤️", "💖", "💕", "💗", "🩷"];
+
+      function spawnHearts() {
+        for (var i = 0; i < 18; i++) {
+          var h = document.createElement("span");
+          h.className = "heart";
+          h.textContent = heartChars[i % heartChars.length];
+          h.style.setProperty("--x", (5 + Math.random() * 90) + "%");
+          h.style.setProperty("--dur", (12 + Math.random() * 10) + "s");
+          h.style.setProperty("--delay", (i * 0.4) + "s");
+          h.style.setProperty("--rot", (Math.random() * 40 - 20) + "deg");
+          heartsLayer.appendChild(h);
+        }
+      }
+
+      function spawnBalloons() {
+        var colors = ["#ff6b9d", "#ffd93d", "#6bcb77", "#4d96ff", "#ff7979", "#c44569"];
+        for (var i = 0; i < 14; i++) {
+          var b = document.createElement("div");
+          b.className = "balloon";
+          b.style.left = (Math.random() * 100) + "%";
+          b.style.background = colors[i % colors.length];
+          b.style.animationDuration = (8 + Math.random() * 8) + "s";
+          b.style.animationDelay = (i * 0.25) + "s";
+          b.style.setProperty("--spin", (Math.random() * 20 - 10) + "deg");
+          fxLayer.appendChild(b);
+        }
+      }
+
+      function spawnConfetti() {
+        var colors = ["#fff", "#ffd93d", "#ff6b9d", "#e84a5f", "#c44569", "#ffe4ec"];
+        for (var i = 0; i < 50; i++) {
+          var c = document.createElement("div");
+          c.className = "confetti";
+          c.style.left = Math.random() * 100 + "%";
+          c.style.background = colors[i % colors.length];
+          c.style.width = (6 + Math.random() * 8) + "px";
+          c.style.height = (6 + Math.random() * 8) + "px";
+          c.style.borderRadius = Math.random() > 0.5 ? "50%" : "2px";
+          c.style.animationDuration = (5 + Math.random() * 6) + "s";
+          c.style.animationDelay = (Math.random() * 2) + "s";
+          c.style.setProperty("--drift", (Math.random() * 120 - 60) + "px");
+          fxLayer.appendChild(c);
+        }
+      }
+
+      function typeNext() {
+        if (typeIndex <= fullMessage.length) {
+          typedEl.textContent = fullMessage.slice(0, typeIndex);
+          typeIndex++;
+          /* Slightly slower for Nepali (Devanagari) readability */
+          typeTimer = setTimeout(typeNext, typeIndex > 20 ? 38 : 55);
+        } else {
+          typedEl.classList.add("done");
+        }
+      }
+
+      function runSurprise() {
+        if (started) return;
+        started = true;
+        btn.disabled = true;
+        btn.textContent = "यो दिन तिम्रो, माया सधैँ तिम्रै साथ 🎉";
+
+        typedEl.classList.remove("done");
+        typedEl.textContent = "";
+        typeIndex = 0;
+        if (typeTimer) clearTimeout(typeTimer);
+
+        spawnHearts();
+        spawnBalloons();
+        spawnConfetti();
+        typeNext();
+        playBirthdaySound();
+      }
+
+      btn.addEventListener("click", runSurprise);
+      btn.addEventListener("touchend", function (e) {
+        e.preventDefault();
+        runSurprise();
+      }, { passive: false });
+    })();
+  </script>
+</body>
+</html>
