@@ -291,6 +291,32 @@
     memoriesBtn.addEventListener("click", openMemories);
   }
 
+  (function initGalleryViewToggle() {
+    var toggle = document.querySelector(".gallery-view-toggle");
+    var tabs = toggle ? toggle.querySelectorAll(".gallery-tab") : [];
+    tabs.forEach(function (tab) {
+      tab.addEventListener("click", function () {
+        var view = tab.getAttribute("data-view");
+        if (!photoGallery || !view) return;
+        tabs.forEach(function (t) {
+          t.classList.remove("active");
+          t.setAttribute("aria-pressed", "false");
+        });
+        tab.classList.add("active");
+        tab.setAttribute("aria-pressed", "true");
+        if (view === "grid") {
+          photoGallery.classList.add("grid-view");
+          stopGalleryAutoSlide();
+        } else {
+          photoGallery.classList.remove("grid-view");
+          if (memoriesModal && memoriesModal.classList.contains("open")) {
+            startGalleryAutoSlide();
+          }
+        }
+      });
+    });
+  })();
+
   if (memoriesModal) {
     memoriesModal.addEventListener("click", function (e) {
       var t = e.target;

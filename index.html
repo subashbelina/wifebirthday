@@ -6,6 +6,7 @@
   <meta name="mobile-web-app-capable" content="yes" />
   <meta name="theme-color" content="#e91e63" />
   <title>जन्मदिनको शुभकामना ❤️</title>
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='90'%3E🎂%3C/text%3E%3C/svg%3E" type="image/svg+xml" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Devanagari:wght@500;600;700;800&display=swap" rel="stylesheet" />
@@ -58,54 +59,54 @@
       <button type="button" class="memories-modal__close" data-mem-close="1" aria-label="बन्द गर्नुहोस्">✕</button>
       <h2 class="memories-modal__title">📷 हाम्रा सम्झनाहरू</h2>
       <p class="memories-modal__sub">तस्विरमा क्लिक/ट्याप गर्दा ठूलो भएर खुल्छ।</p>
+      <div class="gallery-view-toggle" role="tablist" aria-label="ग्यालरी दृश्य">
+        <button type="button" class="gallery-tab active" data-view="slider" aria-pressed="true">स्लाइडर (स्वाइप)</button>
+        <button type="button" class="gallery-tab" data-view="grid" aria-pressed="false">सबै तस्विर (ग्रिड)</button>
+      </div>
 
       <div class="photo-gallery" id="photoGallery">
-        <div class="gallery-item"><img src="images/photo1.jpg" alt="सम्झना १" loading="lazy" width="400" height="400" data-lightbox="1" onerror="this.closest('.gallery-item').style.display='none'" /></div>
-        <div class="gallery-item"><img src="images/photo2.JPG" alt="सम्झना २" loading="lazy" width="400" height="400" data-lightbox="2" onerror="this.closest('.gallery-item').style.display='none'" /></div>
-        <div class="gallery-item"><img src="images/photo3.jpg" alt="सम्झना ३" loading="lazy" width="400" height="400" data-lightbox="3" onerror="this.closest('.gallery-item').style.display='none'" /></div>
-        <div class="gallery-item"><img src="images/photo4.jpg" alt="सम्झना ४" loading="lazy" width="400" height="400" data-lightbox="4" onerror="this.closest('.gallery-item').style.display='none'" /></div>
-        <div class="gallery-item"><img src="images/IMG_0438.jpg" alt="सम्झना ५" loading="lazy" width="400" height="400" data-lightbox="5" onerror="this.closest('.gallery-item').style.display='none'" /></div>
-        <div class="gallery-item"><img src="images/IMG_0459.jpg" alt="सम्झना ६" loading="lazy" width="400" height="400" data-lightbox="6" onerror="this.closest('.gallery-item').style.display='none'" /></div>
-        <div class="gallery-item"><img src="images/IMG_0823.jpg" alt="सम्झना ७" loading="lazy" width="400" height="400" data-lightbox="7" onerror="this.closest('.gallery-item').style.display='none'" /></div>
-        <div class="gallery-item"><img src="images/IMG_0917.jpg" alt="सम्झना ८" loading="lazy" width="400" height="400" data-lightbox="8" onerror="this.closest('.gallery-item').style.display='none'" /></div>
-        <div class="gallery-item"><img src="images/IMG_0947.jpg" alt="सम्झना ९" loading="lazy" width="400" height="400" data-lightbox="9" onerror="this.closest('.gallery-item').style.display='none'" /></div>
-        <div class="gallery-item"><img src="images/IMG_1008.jpg" alt="सम्झना १०" loading="lazy" width="400" height="400" data-lightbox="10" onerror="this.closest('.gallery-item').style.display='none'" /></div>
-        <div class="gallery-item"><img src="images/IMG_1281.jpg" alt="सम्झना ११" loading="lazy" width="400" height="400" data-lightbox="11" onerror="this.closest('.gallery-item').style.display='none'" /></div>
-        <div class="gallery-item"><img src="images/IMG_1746.jpg" alt="सम्झना १२" loading="lazy" width="400" height="400" data-lightbox="12" onerror="this.closest('.gallery-item').style.display='none'" /></div>
-        <div class="gallery-item"><img src="images/IMG_1801.jpg" alt="सम्झना १३" loading="lazy" width="400" height="400" data-lightbox="13" onerror="this.closest('.gallery-item').style.display='none'" /></div>
-        <div class="gallery-item"><img src="images/IMG_1923.jpg" alt="सम्झना १४" loading="lazy" width="400" height="400" data-lightbox="14" onerror="this.closest('.gallery-item').style.display='none'" /></div>
-        <div class="gallery-item"><img src="images/IMG_1927.jpg" alt="सम्झना १५" loading="lazy" width="400" height="400" data-lightbox="15" onerror="this.closest('.gallery-item').style.display='none'" /></div>
-        <div class="gallery-item"><img src="images/IMG_1966.jpg" alt="सम्झना १६" loading="lazy" width="400" height="400" data-lightbox="16" onerror="this.closest('.gallery-item').style.display='none'" /></div>
-        <div class="gallery-item"><img src="images/IMG_2075.jpg" alt="सम्झना १७" loading="lazy" width="400" height="400" data-lightbox="17" onerror="this.closest('.gallery-item').style.display='none'" /></div>
-        <div class="gallery-item"><img src="images/IMG_2144.jpg" alt="सम्झना १८" loading="lazy" width="400" height="400" data-lightbox="18" onerror="this.closest('.gallery-item').style.display='none'" /></div>
-        <div class="gallery-item"><img src="images/IMG_2335.jpg" alt="सम्झना १९" loading="lazy" width="400" height="400" data-lightbox="19" onerror="this.closest('.gallery-item').style.display='none'" /></div>
-        <div class="gallery-item"><img src="images/IMG_2641.jpg" alt="सम्झना २०" loading="lazy" width="400" height="400" data-lightbox="20" onerror="this.closest('.gallery-item').style.display='none'" /></div>
-        <div class="gallery-item"><img src="images/IMG_2773.jpg" alt="सम्झना २१" loading="lazy" width="400" height="400" data-lightbox="21" onerror="this.closest('.gallery-item').style.display='none'" /></div>
-        <div class="gallery-item"><img src="images/IMG_3021.jpg" alt="सम्झना २२" loading="lazy" width="400" height="400" data-lightbox="22" onerror="this.closest('.gallery-item').style.display='none'" /></div>
-        <div class="gallery-item"><img src="images/IMG_3133.jpg" alt="सम्झना २३" loading="lazy" width="400" height="400" data-lightbox="23" onerror="this.closest('.gallery-item').style.display='none'" /></div>
-        <div class="gallery-item"><img src="images/IMG_3472.jpg" alt="सम्झना २४" loading="lazy" width="400" height="400" data-lightbox="24" onerror="this.closest('.gallery-item').style.display='none'" /></div>
-        <div class="gallery-item"><img src="images/IMG_3594.JPG" alt="सम्झना २५" loading="lazy" width="400" height="400" data-lightbox="25" onerror="this.closest('.gallery-item').style.display='none'" /></div>
-        <div class="gallery-item"><img src="images/IMG_3798.jpg" alt="सम्झना २६" loading="lazy" width="400" height="400" data-lightbox="26" onerror="this.closest('.gallery-item').style.display='none'" /></div>
-        <div class="gallery-item"><img src="images/IMG_4589.jpg" alt="सम्झना २७" loading="lazy" width="400" height="400" data-lightbox="27" onerror="this.closest('.gallery-item').style.display='none'" /></div>
-        <div class="gallery-item"><img src="images/IMG_5205.jpg" alt="सम्झना २८" loading="lazy" width="400" height="400" data-lightbox="28" onerror="this.closest('.gallery-item').style.display='none'" /></div>
-        <div class="gallery-item"><img src="images/IMG_5260.jpg" alt="सम्झना २९" loading="lazy" width="400" height="400" data-lightbox="29" onerror="this.closest('.gallery-item').style.display='none'" /></div>
-        <div class="gallery-item"><img src="images/IMG_5636.jpg" alt="सम्झना ३०" loading="lazy" width="400" height="400" data-lightbox="30" onerror="this.closest('.gallery-item').style.display='none'" /></div>
-        <div class="gallery-item"><img src="images/IMG_5976.jpg" alt="सम्झना ३१" loading="lazy" width="400" height="400" data-lightbox="31" onerror="this.closest('.gallery-item').style.display='none'" /></div>
-        <div class="gallery-item"><img src="images/IMG_6805.JPG" alt="सम्झना ३२" loading="lazy" width="400" height="400" data-lightbox="32" onerror="this.closest('.gallery-item').style.display='none'" /></div>
-        <div class="gallery-item"><img src="images/IMG_7186.jpg" alt="सम्झना ३३" loading="lazy" width="400" height="400" data-lightbox="33" onerror="this.closest('.gallery-item').style.display='none'" /></div>
-        <div class="gallery-item"><img src="images/IMG_7492.jpg" alt="सम्झना ३४" loading="lazy" width="400" height="400" data-lightbox="34" onerror="this.closest('.gallery-item').style.display='none'" /></div>
-        <div class="gallery-item"><img src="images/IMG_7616.jpg" alt="सम्झना ३५" loading="lazy" width="400" height="400" data-lightbox="35" onerror="this.closest('.gallery-item').style.display='none'" /></div>
-        <div class="gallery-item"><img src="images/IMG_8145.jpg" alt="सम्झना ३६" loading="lazy" width="400" height="400" data-lightbox="36" onerror="this.closest('.gallery-item').style.display='none'" /></div>
-        <div class="gallery-item"><img src="images/IMG_8150.jpg" alt="सम्झना ३७" loading="lazy" width="400" height="400" data-lightbox="37" onerror="this.closest('.gallery-item').style.display='none'" /></div>
-        <div class="gallery-item"><img src="images/IMG_8969.jpg" alt="सम्झना ३८" loading="lazy" width="400" height="400" data-lightbox="38" onerror="this.closest('.gallery-item').style.display='none'" /></div>
-        <div class="gallery-item"><img src="images/IMG_8971.jpg" alt="सम्झना ३९" loading="lazy" width="400" height="400" data-lightbox="39" onerror="this.closest('.gallery-item').style.display='none'" /></div>
-        <div class="gallery-item"><img src="images/IMG_9646.jpg" alt="सम्झना ४०" loading="lazy" width="400" height="400" data-lightbox="40" onerror="this.closest('.gallery-item').style.display='none'" /></div>
-        <div class="gallery-item"><img src="images/IMG_9710.jpg" alt="सम्झना ४१" loading="lazy" width="400" height="400" data-lightbox="41" onerror="this.closest('.gallery-item').style.display='none'" /></div>
-        <div class="gallery-item"><img src="images/IMG_9722.jpg" alt="सम्झना ४२" loading="lazy" width="400" height="400" data-lightbox="42" onerror="this.closest('.gallery-item').style.display='none'" /></div>
-        <div class="gallery-item"><img src="images/IMG_9725.jpg" alt="सम्झना ४३" loading="lazy" width="400" height="400" data-lightbox="43" onerror="this.closest('.gallery-item').style.display='none'" /></div>
-        <div class="gallery-item"><img src="images/IMG_9768.jpg" alt="सम्झना ४४" loading="lazy" width="400" height="400" data-lightbox="44" onerror="this.closest('.gallery-item').style.display='none'" /></div>
-        <div class="gallery-item"><img src="images/IMG_9770.jpg" alt="सम्झना ४५" loading="lazy" width="400" height="400" data-lightbox="45" onerror="this.closest('.gallery-item').style.display='none'" /></div>
-        <div class="gallery-item"><img src="images/IMG_9943.jpg" alt="सम्झना ४६" loading="lazy" width="400" height="400" data-lightbox="46" onerror="this.closest('.gallery-item').style.display='none'" /></div>
+        <div class="gallery-item"><img src="images/IMG_0823.jpg" alt="सम्झना १" loading="lazy" width="400" height="400" data-lightbox="1" onerror="this.closest('.gallery-item').style.display='none'" /></div>
+        <div class="gallery-item"><img src="images/IMG_0917.jpg" alt="सम्झना २" loading="lazy" width="400" height="400" data-lightbox="2" onerror="this.closest('.gallery-item').style.display='none'" /></div>
+        <div class="gallery-item"><img src="images/IMG_0947.jpg" alt="सम्झना ३" loading="lazy" width="400" height="400" data-lightbox="3" onerror="this.closest('.gallery-item').style.display='none'" /></div>
+        <div class="gallery-item"><img src="images/IMG_1008.jpg" alt="सम्झना ४" loading="lazy" width="400" height="400" data-lightbox="4" onerror="this.closest('.gallery-item').style.display='none'" /></div>
+        <div class="gallery-item"><img src="images/IMG_1281.jpg" alt="सम्झना ५" loading="lazy" width="400" height="400" data-lightbox="5" onerror="this.closest('.gallery-item').style.display='none'" /></div>
+        <div class="gallery-item"><img src="images/IMG_1576.jpg" alt="सम्झना ६" loading="lazy" width="400" height="400" data-lightbox="6" onerror="this.closest('.gallery-item').style.display='none'" /></div>
+        <div class="gallery-item"><img src="images/IMG_1577.jpg" alt="सम्झना ७" loading="lazy" width="400" height="400" data-lightbox="7" onerror="this.closest('.gallery-item').style.display='none'" /></div>
+        <div class="gallery-item"><img src="images/IMG_1801.jpg" alt="सम्झना ८" loading="lazy" width="400" height="400" data-lightbox="8" onerror="this.closest('.gallery-item').style.display='none'" /></div>
+        <div class="gallery-item"><img src="images/IMG_1923.jpg" alt="सम्झना ९" loading="lazy" width="400" height="400" data-lightbox="9" onerror="this.closest('.gallery-item').style.display='none'" /></div>
+        <div class="gallery-item"><img src="images/IMG_1927.jpg" alt="सम्झना १०" loading="lazy" width="400" height="400" data-lightbox="10" onerror="this.closest('.gallery-item').style.display='none'" /></div>
+        <div class="gallery-item"><img src="images/IMG_1966.jpg" alt="सम्झना ११" loading="lazy" width="400" height="400" data-lightbox="11" onerror="this.closest('.gallery-item').style.display='none'" /></div>
+        <div class="gallery-item"><img src="images/IMG_2075.jpg" alt="सम्झना १२" loading="lazy" width="400" height="400" data-lightbox="12" onerror="this.closest('.gallery-item').style.display='none'" /></div>
+        <div class="gallery-item"><img src="images/IMG_2144.jpg" alt="सम्झना १३" loading="lazy" width="400" height="400" data-lightbox="13" onerror="this.closest('.gallery-item').style.display='none'" /></div>
+        <div class="gallery-item"><img src="images/IMG_2335.jpg" alt="सम्झना १४" loading="lazy" width="400" height="400" data-lightbox="14" onerror="this.closest('.gallery-item').style.display='none'" /></div>
+        <div class="gallery-item"><img src="images/IMG_2641.jpg" alt="सम्झना १५" loading="lazy" width="400" height="400" data-lightbox="15" onerror="this.closest('.gallery-item').style.display='none'" /></div>
+        <div class="gallery-item"><img src="images/IMG_2773.jpg" alt="सम्झना १६" loading="lazy" width="400" height="400" data-lightbox="16" onerror="this.closest('.gallery-item').style.display='none'" /></div>
+        <div class="gallery-item"><img src="images/IMG_3021.jpg" alt="सम्झना १७" loading="lazy" width="400" height="400" data-lightbox="17" onerror="this.closest('.gallery-item').style.display='none'" /></div>
+        <div class="gallery-item"><img src="images/IMG_3133.jpg" alt="सम्झना १८" loading="lazy" width="400" height="400" data-lightbox="18" onerror="this.closest('.gallery-item').style.display='none'" /></div>
+        <div class="gallery-item"><img src="images/IMG_3472.jpg" alt="सम्झना १९" loading="lazy" width="400" height="400" data-lightbox="19" onerror="this.closest('.gallery-item').style.display='none'" /></div>
+        <div class="gallery-item"><img src="images/IMG_3798.jpg" alt="सम्झना २०" loading="lazy" width="400" height="400" data-lightbox="20" onerror="this.closest('.gallery-item').style.display='none'" /></div>
+        <div class="gallery-item"><img src="images/IMG_4158.JPG" alt="सम्झना २१" loading="lazy" width="400" height="400" data-lightbox="21" onerror="this.closest('.gallery-item').style.display='none'" /></div>
+        <div class="gallery-item"><img src="images/IMG_4589.jpg" alt="सम्झना २२" loading="lazy" width="400" height="400" data-lightbox="22" onerror="this.closest('.gallery-item').style.display='none'" /></div>
+        <div class="gallery-item"><img src="images/IMG_5205.jpg" alt="सम्झना २३" loading="lazy" width="400" height="400" data-lightbox="23" onerror="this.closest('.gallery-item').style.display='none'" /></div>
+        <div class="gallery-item"><img src="images/IMG_5260.jpg" alt="सम्झना २४" loading="lazy" width="400" height="400" data-lightbox="24" onerror="this.closest('.gallery-item').style.display='none'" /></div>
+        <div class="gallery-item"><img src="images/IMG_5636.jpg" alt="सम्झना २५" loading="lazy" width="400" height="400" data-lightbox="25" onerror="this.closest('.gallery-item').style.display='none'" /></div>
+        <div class="gallery-item"><img src="images/IMG_5976.jpg" alt="सम्झना २६" loading="lazy" width="400" height="400" data-lightbox="26" onerror="this.closest('.gallery-item').style.display='none'" /></div>
+        <div class="gallery-item"><img src="images/IMG_6805.JPG" alt="सम्झना २७" loading="lazy" width="400" height="400" data-lightbox="27" onerror="this.closest('.gallery-item').style.display='none'" /></div>
+        <div class="gallery-item"><img src="images/IMG_7186.jpg" alt="सम्झना २८" loading="lazy" width="400" height="400" data-lightbox="28" onerror="this.closest('.gallery-item').style.display='none'" /></div>
+        <div class="gallery-item"><img src="images/IMG_7492.jpg" alt="सम्झना २९" loading="lazy" width="400" height="400" data-lightbox="29" onerror="this.closest('.gallery-item').style.display='none'" /></div>
+        <div class="gallery-item"><img src="images/IMG_7616.jpg" alt="सम्झना ३०" loading="lazy" width="400" height="400" data-lightbox="30" onerror="this.closest('.gallery-item').style.display='none'" /></div>
+        <div class="gallery-item"><img src="images/IMG_8145.jpg" alt="सम्झना ३१" loading="lazy" width="400" height="400" data-lightbox="31" onerror="this.closest('.gallery-item').style.display='none'" /></div>
+        <div class="gallery-item"><img src="images/IMG_8150.jpg" alt="सम्झना ३२" loading="lazy" width="400" height="400" data-lightbox="32" onerror="this.closest('.gallery-item').style.display='none'" /></div>
+        <div class="gallery-item"><img src="images/IMG_8969.jpg" alt="सम्झना ३३" loading="lazy" width="400" height="400" data-lightbox="33" onerror="this.closest('.gallery-item').style.display='none'" /></div>
+        <div class="gallery-item"><img src="images/IMG_8971.jpg" alt="सम्झना ३४" loading="lazy" width="400" height="400" data-lightbox="34" onerror="this.closest('.gallery-item').style.display='none'" /></div>
+        <div class="gallery-item"><img src="images/IMG_9646.jpg" alt="सम्झना ३५" loading="lazy" width="400" height="400" data-lightbox="35" onerror="this.closest('.gallery-item').style.display='none'" /></div>
+        <div class="gallery-item"><img src="images/IMG_9710.jpg" alt="सम्झना ३६" loading="lazy" width="400" height="400" data-lightbox="36" onerror="this.closest('.gallery-item').style.display='none'" /></div>
+        <div class="gallery-item"><img src="images/IMG_9722.jpg" alt="सम्झना ३७" loading="lazy" width="400" height="400" data-lightbox="37" onerror="this.closest('.gallery-item').style.display='none'" /></div>
+        <div class="gallery-item"><img src="images/IMG_9725.jpg" alt="सम्झना ३८" loading="lazy" width="400" height="400" data-lightbox="38" onerror="this.closest('.gallery-item').style.display='none'" /></div>
+        <div class="gallery-item"><img src="images/IMG_9768.jpg" alt="सम्झना ३९" loading="lazy" width="400" height="400" data-lightbox="39" onerror="this.closest('.gallery-item').style.display='none'" /></div>
+        <div class="gallery-item"><img src="images/IMG_9770.jpg" alt="सम्झना ४०" loading="lazy" width="400" height="400" data-lightbox="40" onerror="this.closest('.gallery-item').style.display='none'" /></div>
+        <div class="gallery-item"><img src="images/IMG_9943.jpg" alt="सम्झना ४१" loading="lazy" width="400" height="400" data-lightbox="41" onerror="this.closest('.gallery-item').style.display='none'" /></div>
+        <div class="gallery-item"><img src="images/rtc-snapshot-743650416330813591_Original.jpg" alt="सम्झना ४२" loading="lazy" width="400" height="400" data-lightbox="42" onerror="this.closest('.gallery-item').style.display='none'" /></div>
       </div>
 
       <div class="timeline" aria-label="हाम्रा सम्झनाहरू टाइमलाइन">
