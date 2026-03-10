@@ -16,6 +16,8 @@
   var audioToggle = document.getElementById("audioToggle");
 
   var memoriesModal = document.getElementById("memoriesModal");
+  var photoGallery = document.getElementById("photoGallery");
+  var galleryAutoSlideTimer = null;
 
   var lightbox = document.getElementById("lightbox");
   var lightboxImg = document.getElementById("lightboxImg");
@@ -137,13 +139,13 @@
 
   function spawnPetals() {
     if (!petalsLayer) return;
-    for (var i = 0; i < 24; i++) {
+    for (var i = 0; i < 10; i++) {
       var p = document.createElement("div");
       p.className = "petal";
       p.style.left = Math.random() * 100 + "%";
-      p.style.animationDuration = (8 + Math.random() * 6) + "s";
+      p.style.animationDuration = (11 + Math.random() * 7) + "s";
       p.style.animationDelay = (Math.random() * 4) + "s";
-      p.style.setProperty("--sway", (Math.random() * 80 - 40) + "px");
+      p.style.setProperty("--sway", (Math.random() * 60 - 30) + "px");
       petalsLayer.appendChild(p);
     }
   }
@@ -185,9 +187,8 @@
     spawnPetals();
     spawnConfetti();
 
-    // keep balloons and petals coming
+    // keep balloons coming
     setInterval(spawnBalloons, 7000);
-    setInterval(spawnPetals, 9000);
   }
 
   function typeNext() {
@@ -250,6 +251,7 @@
     memoriesModal.classList.add("open");
     memoriesModal.setAttribute("aria-hidden", "false");
     document.body.style.overflow = "hidden";
+    startGalleryAutoSlide();
   }
 
   function closeMemories() {
@@ -257,6 +259,32 @@
     memoriesModal.classList.remove("open");
     memoriesModal.setAttribute("aria-hidden", "true");
     document.body.style.overflow = "";
+    stopGalleryAutoSlide();
+  }
+
+  function startGalleryAutoSlide() {
+    stopGalleryAutoSlide();
+    if (!photoGallery) return;
+    var items = photoGallery.querySelectorAll(".gallery-item");
+    if (!items.length) return;
+    var step = items[0].offsetWidth + 12;
+    galleryAutoSlideTimer = setInterval(function () {
+      var maxScroll = photoGallery.scrollWidth - photoGallery.clientWidth;
+      if (maxScroll <= 0) return;
+      var next = photoGallery.scrollLeft + step;
+      if (next >= maxScroll - 10) {
+        photoGallery.scrollLeft = 0;
+      } else {
+        photoGallery.scrollLeft = next;
+      }
+    }, 3500);
+  }
+
+  function stopGalleryAutoSlide() {
+    if (galleryAutoSlideTimer) {
+      clearInterval(galleryAutoSlideTimer);
+      galleryAutoSlideTimer = null;
+    }
   }
 
   if (memoriesBtn) {

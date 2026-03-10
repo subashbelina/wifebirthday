@@ -191,25 +191,42 @@ h1 {
   -webkit-backdrop-filter: blur(10px);
 }
 
-/* Photo gallery — add your images to the images/ folder */
+/* Photo gallery — horizontal slider of memories */
 .photo-gallery {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 0.5rem;
+  display: flex;
+  gap: 0.6rem;
   margin-bottom: 1rem;
   width: 100%;
+  overflow-x: auto;
+  padding-bottom: 0.25rem;
+  scroll-snap-type: x mandatory;
+  -webkit-overflow-scrolling: touch;
+  scroll-behavior: smooth;
 }
-@media (max-width: 380px) {
-  .photo-gallery { grid-template-columns: 1fr 1fr; }
+.photo-gallery::-webkit-scrollbar {
+  height: 4px;
+}
+.photo-gallery::-webkit-scrollbar-thumb {
+  background: rgba(255,255,255,0.5);
+  border-radius: 999px;
 }
 .gallery-item {
   position: relative;
+  flex: 0 0 70%;
+  max-width: 70%;
   aspect-ratio: 1;
-  border-radius: 0.75rem;
+  border-radius: 0.9rem;
   overflow: hidden;
   border: 2px solid rgba(255,255,255,0.45);
-  box-shadow: 0 6px 20px rgba(0,0,0,0.12);
+  box-shadow: 0 6px 20px rgba(0,0,0,0.18);
   background: rgba(255,255,255,0.15);
+  scroll-snap-align: center;
+}
+@media (min-width: 600px) {
+  .gallery-item {
+    flex-basis: 45%;
+    max-width: 45%;
+  }
 }
 .gallery-item img {
   width: 100%;
