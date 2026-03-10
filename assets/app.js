@@ -1,7 +1,8 @@
 (function () {
-  var fullMessage = "प्रिय बेलिना राई, जन्मदिनको असीम शुभकामना 🎂 तिमी मेरो जीवनको सबैभन्दा मूल्यवान उपहार हौ — तिम्रो मुस्कान नै मेरो संसार, तिम्रो साथ नै मेरो शान्ति । हजार जन्म पनि कम भए तिमीजस्तो जीवनसाथी पाउन । म तिमीलाई अनन्त माया गर्छु, सधैँ गर्नेछु 💖";
+  var fullMessage = "प्रिय जीवनसंगिनी बेलिना राई, जन्मदिनको असीम शुभकामना 🎂 आजको दिन तिम्रो हो—तर खुशी मेरो पनि, किनकि मेरो संसार तिमीबाट सुरु हुन्छ र तिमीमै शान्त हुन्छ । तिम्रो मुस्कान मेरो प्रार्थना हो, तिम्रो हात मेरो भरोसा, तिम्रो साथ मेरो घर । मैले जीवनमा धेरै कुरा खोजिनँ—सधैं तिमीलाई रोजेँ, र अझै रोजिरहनेछु । तिमी जस्तो साथ पाउन हजार जन्म पनि कम लाग्छ; तिमी मेरो सबैभन्दा मूल्यवान उपहार, मेरो भाग्य, मेरो माया हौ । सधैं तिम्रो सम्मान गर्नेछु, जोगाउनेछु, र हरेक दिन तिमीलाई अझ बढी माया गर्नेछु 💖";
   var typedEl = document.getElementById("typedMessage");
   var btn = document.getElementById("surpriseBtn");
+  var memoriesBtn = document.getElementById("memoriesBtn");
   var heartsLayer = document.getElementById("heartsLayer");
   var fxLayer = document.getElementById("fxLayer");
   var started = false;
@@ -11,6 +12,8 @@
   var birthdayAudio = document.getElementById("birthdayAudio");
   var audioBar = document.getElementById("audioBar");
   var audioToggle = document.getElementById("audioToggle");
+
+  var memoriesModal = document.getElementById("memoriesModal");
 
   var lightbox = document.getElementById("lightbox");
   var lightboxImg = document.getElementById("lightboxImg");
@@ -105,6 +108,33 @@
     });
   }
 
+  function openMemories() {
+    if (!memoriesModal) return;
+    memoriesModal.classList.add("open");
+    memoriesModal.setAttribute("aria-hidden", "false");
+    document.body.style.overflow = "hidden";
+  }
+
+  function closeMemories() {
+    if (!memoriesModal) return;
+    memoriesModal.classList.remove("open");
+    memoriesModal.setAttribute("aria-hidden", "true");
+    document.body.style.overflow = "";
+  }
+
+  if (memoriesBtn) {
+    memoriesBtn.addEventListener("click", openMemories);
+  }
+
+  if (memoriesModal) {
+    memoriesModal.addEventListener("click", function (e) {
+      var t = e.target;
+      if (t && t.getAttribute && t.getAttribute("data-mem-close") === "1") {
+        closeMemories();
+      }
+    });
+  }
+
   function getVisibleGallery() {
     return galleryImages.filter(function (img) {
       var item = img.closest(".gallery-item");
@@ -162,6 +192,11 @@
     if (e.key === "ArrowRight") return stepLightbox(1);
   });
 
+  document.addEventListener("keydown", function (e) {
+    if (!memoriesModal || !memoriesModal.classList.contains("open")) return;
+    if (e.key === "Escape") return closeMemories();
+  });
+
   (function enableSwipe() {
     if (!lightbox || !lightboxImg) return;
     var startX = 0;
@@ -189,6 +224,7 @@
     started = true;
     btn.disabled = true;
     btn.textContent = "यो दिन तिम्रो, माया सधैँ तिम्रै साथ 🎉";
+    if (memoriesBtn) memoriesBtn.hidden = false;
 
     typedEl.classList.remove("done");
     typedEl.textContent = "";
