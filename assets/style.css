@@ -7,7 +7,10 @@ body {
   min-height: 100%;
   min-height: -webkit-fill-available;
   font-family: "Noto Sans Devanagari", "Mukta", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-  background: linear-gradient(160deg, #ff6b9d 0%, #c44569 25%, #e84a5f 50%, #ff7979 75%, #f8b500 100%);
+  background-color: #000;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
   background-attachment: fixed;
   overflow-x: hidden;
   display: flex;
@@ -35,6 +38,31 @@ h1 {
   margin-bottom: 1.25rem;
   letter-spacing: 0.02em;
   line-height: 1.2;
+}
+
+.hero-title {
+  text-shadow:
+    0 0 18px rgba(255, 255, 255, 0.9),
+    0 0 32px rgba(255, 105, 180, 0.9),
+    0 0 60px rgba(233, 30, 99, 0.85);
+  animation: glowPulse 2.6s ease-in-out infinite alternate;
+}
+
+@keyframes glowPulse {
+  0% {
+    text-shadow:
+      0 0 8px rgba(255, 255, 255, 0.8),
+      0 0 20px rgba(255, 105, 180, 0.8),
+      0 0 30px rgba(233, 30, 99, 0.7);
+    transform: translateY(0);
+  }
+  100% {
+    text-shadow:
+      0 0 18px rgba(255, 255, 255, 1),
+      0 0 40px rgba(255, 105, 180, 1),
+      0 0 70px rgba(233, 30, 99, 1);
+    transform: translateY(-2px);
+  }
 }
 
 /* Birth date details card */
@@ -440,6 +468,188 @@ h1 {
   10% { opacity: 0.9; }
   90% { opacity: 0.7; }
   100% { transform: translateY(-110vh) rotate(var(--rot)) scale(1); opacity: 0; }
+}
+
+.petals-layer {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  overflow: hidden;
+  z-index: 0;
+}
+
+.petal {
+  position: absolute;
+  top: -10%;
+  width: 20px;
+  height: 28px;
+  background: radial-gradient(circle at 30% 30%, #ffe4ec 0, #ffb6c9 35%, #e91e63 100%);
+  border-radius: 60% 40% 70% 30%;
+  opacity: 0.9;
+  transform-origin: center center;
+  filter: drop-shadow(0 4px 8px rgba(0,0,0,0.25));
+  animation-name: fallPetal;
+  animation-timing-function: linear;
+  animation-iteration-count: infinite;
+}
+
+@keyframes fallPetal {
+  0% {
+    transform: translate3d(0, -10vh, 0) rotate3d(0, 0, 1, 0deg);
+    opacity: 0;
+  }
+  20% {
+    opacity: 1;
+  }
+  100% {
+    transform: translate3d(var(--sway, 40px), 110vh, 0) rotate3d(0, 0, 1, 260deg);
+    opacity: 0;
+  }
+}
+
+/* Firecrackers & boom fireworks (on open) */
+.fireworks-layer {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  overflow: visible;
+  z-index: 15;
+}
+
+/* Firecracker: tube body */
+.firecracker {
+  position: absolute;
+  left: var(--x, 50%);
+  top: var(--y, 40%);
+  width: 0;
+  height: 0;
+  transform: translate(-50%, -50%);
+  pointer-events: none;
+}
+
+.firecracker-tube {
+  position: absolute;
+  left: 50%;
+  top: 0;
+  transform: translate(-50%, 0);
+  width: 14px;
+  height: 32px;
+  background: linear-gradient(180deg, #c62828 0%, #b71c1c 40%, #8b0000 100%);
+  border-radius: 3px;
+  box-shadow:
+    inset 2px 0 4px rgba(255,255,255,0.2),
+    inset -2px 0 4px rgba(0,0,0,0.3),
+    0 2px 8px rgba(0,0,0,0.4);
+}
+
+.firecracker-tube::before {
+  content: "";
+  position: absolute;
+  left: 2px;
+  top: 4px;
+  right: 2px;
+  height: 6px;
+  background: linear-gradient(90deg, #ffd54f, #ffb300);
+  border-radius: 2px;
+}
+
+.firecracker-fuse {
+  position: absolute;
+  left: 50%;
+  top: -18px;
+  transform: translateX(-50%);
+  width: 4px;
+  height: 18px;
+  background: linear-gradient(180deg, #5d4037 0%, #3e2723 100%);
+  border-radius: 2px;
+}
+
+.firecracker-fuse-tip {
+  position: absolute;
+  left: 50%;
+  top: -6px;
+  transform: translateX(-50%);
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: #ffeb3b;
+  box-shadow: 0 0 12px #ff9800, 0 0 24px #ff5722;
+  animation: fuseBurn 0.7s ease-out forwards;
+}
+
+@keyframes fuseBurn {
+  0% {
+    opacity: 1;
+    transform: translateX(-50%) scale(1.2);
+    box-shadow: 0 0 16px #ff9800, 0 0 32px #ff5722;
+  }
+  100% {
+    opacity: 0;
+    transform: translateX(-50%) scale(0.3);
+    box-shadow: 0 0 4px #ff9800;
+  }
+}
+
+.firework-burst {
+  position: absolute;
+  left: var(--x, 50%);
+  top: var(--y, 40%);
+  width: 0;
+  height: 0;
+  transform: translate(-50%, -50%);
+  pointer-events: none;
+}
+
+.firework-spark {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background: var(--spark-color, #ff6b9d);
+  color: var(--spark-color, #ff6b9d);
+  box-shadow:
+    0 0 8px var(--spark-color),
+    0 0 16px var(--spark-color),
+    0 0 24px rgba(255, 255, 255, 0.8);
+  animation: boomOut 1.6s ease-out forwards;
+  opacity: 0;
+}
+
+.firework-spark.streak {
+  width: 5px;
+  height: 24px;
+  border-radius: 3px;
+}
+
+/* Firecracker sparks: more orange/red/gold */
+.firework-spark.cracker {
+  width: 6px;
+  height: 6px;
+  box-shadow:
+    0 0 6px var(--spark-color),
+    0 0 12px var(--spark-color);
+}
+
+.firework-spark.cracker.streak {
+  width: 4px;
+  height: 28px;
+  border-radius: 2px;
+}
+
+@keyframes boomOut {
+  0% {
+    transform: translate(0, 0) scale(1.5);
+    opacity: 1;
+  }
+  60% {
+    opacity: 1;
+  }
+  100% {
+    transform: translate(var(--tx), var(--ty)) scale(0.2);
+    opacity: 0;
+  }
 }
 
 /* Rising balloons/confetti container */

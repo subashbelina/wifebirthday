@@ -5,6 +5,8 @@
   var memoriesBtn = document.getElementById("memoriesBtn");
   var heartsLayer = document.getElementById("heartsLayer");
   var fxLayer = document.getElementById("fxLayer");
+  var fireworksLayer = document.getElementById("fireworksLayer");
+  var petalsLayer = document.getElementById("petalsLayer");
   var started = false;
   var typeIndex = 0;
   var typeTimer = null;
@@ -22,6 +24,104 @@
 
   var heartChars = ["❤️", "💖", "💕", "💗", "🩷"];
 
+  // Background slideshow
+  var bgImages = [
+    "images/background/bg2.JPG",
+    "images/background/bg3.JPG",
+    "images/background/bg4.png"
+  ];
+  var bgIndex = 0;
+
+  function setBackground(index) {
+    if (!document.body) return;
+    var safeIndex = ((index % bgImages.length) + bgImages.length) % bgImages.length;
+    document.body.style.backgroundImage = 'url("' + bgImages[safeIndex] + '")';
+  }
+
+  function startBackgroundSlideshow() {
+    if (!bgImages.length) return;
+    setBackground(bgIndex);
+    setInterval(function () {
+      bgIndex = (bgIndex + 1) % bgImages.length;
+      setBackground(bgIndex);
+    }, 3000);
+  }
+
+  function addBurstAt(parent, xPct, yPct, delayMs, isCracker) {
+    var colors = isCracker
+      ? ["#ff9800", "#ff5722", "#ffeb3b", "#ffc107", "#e65100", "#ff6d00", "#ffab00"]
+      : ["#ff6b9d", "#ffd93d", "#e91e63", "#ffeb3b", "#ff7979", "#ffffff", "#c44569"];
+    var burst = document.createElement("div");
+    burst.className = "firework-burst";
+    burst.style.setProperty("--x", xPct + "%");
+    burst.style.setProperty("--y", yPct + "%");
+
+    var numSparks = isCracker ? 24 : 36;
+    var radius = isCracker ? 120 + Math.random() * 50 : 220 + Math.random() * 60;
+    for (var i = 0; i < numSparks; i++) {
+      var angle = (i / numSparks) * Math.PI * 2 + Math.random() * 0.5;
+      var dist = radius * (0.85 + Math.random() * 0.3);
+      var tx = Math.cos(angle) * dist;
+      var ty = Math.sin(angle) * dist;
+      var spark = document.createElement("div");
+      spark.className = "firework-spark" + (Math.random() > 0.6 ? " streak" : "") + (isCracker ? " cracker" : "");
+      spark.style.setProperty("--tx", tx + "px");
+      spark.style.setProperty("--ty", ty + "px");
+      spark.style.setProperty("--spark-color", colors[i % colors.length]);
+      spark.style.animationDelay = (delayMs || 0) + "ms";
+      burst.appendChild(spark);
+    }
+    parent.appendChild(burst);
+    setTimeout(function () {
+      if (burst.parentNode) burst.parentNode.removeChild(burst);
+    }, (delayMs || 0) + (isCracker ? 1200 : 1600));
+  }
+
+  function launchBoomFirework(xPercent, yPercent, delayMs) {
+    if (!fireworksLayer) return;
+    addBurstAt(fireworksLayer, xPercent, yPercent, delayMs || 0, false);
+  }
+
+  function launchFirecracker(xPercent, yPercent, delayMs) {
+    if (!fireworksLayer) return;
+    delayMs = delayMs || 0;
+
+    var wrap = document.createElement("div");
+    wrap.className = "firecracker";
+    wrap.style.setProperty("--x", xPercent + "%");
+    wrap.style.setProperty("--y", yPercent + "%");
+
+    var tube = document.createElement("div");
+    tube.className = "firecracker-tube";
+    var fuse = document.createElement("div");
+    fuse.className = "firecracker-fuse";
+    var tip = document.createElement("div");
+    tip.className = "firecracker-fuse-tip";
+
+    wrap.appendChild(tube);
+    wrap.appendChild(fuse);
+    wrap.appendChild(tip);
+    fireworksLayer.appendChild(wrap);
+
+    var fuseTime = 700;
+    setTimeout(function () {
+      if (wrap.parentNode) wrap.parentNode.removeChild(wrap);
+      addBurstAt(fireworksLayer, xPercent, yPercent, 0, true);
+      setTimeout(function () {
+        addBurstAt(fireworksLayer, xPercent + (Math.random() * 4 - 2), yPercent + (Math.random() * 4 - 2), 0, true);
+      }, 80);
+      setTimeout(function () {
+        addBurstAt(fireworksLayer, xPercent + (Math.random() * 6 - 3), yPercent + (Math.random() * 6 - 3), 0, true);
+      }, 160);
+    }, delayMs + fuseTime);
+  }
+
+  function launchBoomFireworksOnOpen() {
+    launchFirecracker(78, 22, 0);   /* top right */
+    launchFirecracker(22, 22, 400); /* top left */
+    launchFirecracker(50, 42, 750); /* center */
+  }
+
   function spawnHearts() {
     for (var i = 0; i < 18; i++) {
       var h = document.createElement("span");
@@ -32,6 +132,19 @@
       h.style.setProperty("--delay", (i * 0.4) + "s");
       h.style.setProperty("--rot", (Math.random() * 40 - 20) + "deg");
       heartsLayer.appendChild(h);
+    }
+  }
+
+  function spawnPetals() {
+    if (!petalsLayer) return;
+    for (var i = 0; i < 24; i++) {
+      var p = document.createElement("div");
+      p.className = "petal";
+      p.style.left = Math.random() * 100 + "%";
+      p.style.animationDuration = (8 + Math.random() * 6) + "s";
+      p.style.animationDelay = (Math.random() * 4) + "s";
+      p.style.setProperty("--sway", (Math.random() * 80 - 40) + "px");
+      petalsLayer.appendChild(p);
     }
   }
 
@@ -64,6 +177,17 @@
       c.style.setProperty("--drift", (Math.random() * 120 - 60) + "px");
       fxLayer.appendChild(c);
     }
+  }
+
+  function startFloatingEffects() {
+    spawnHearts();
+    spawnBalloons();
+    spawnPetals();
+    spawnConfetti();
+
+    // keep balloons and petals coming
+    setInterval(spawnBalloons, 7000);
+    setInterval(spawnPetals, 9000);
   }
 
   function typeNext() {
@@ -105,6 +229,19 @@
         audioToggle.textContent = "बजाउनुहोस्";
         audioToggle.setAttribute("aria-pressed", "false");
       }
+    });
+  }
+
+  // Start background image slideshow and ambient effects immediately
+  startBackgroundSlideshow();
+  startFloatingEffects();
+
+  // Boom fireworks shortly after load so they're visible
+  if (document.readyState === "complete") {
+    setTimeout(launchBoomFireworksOnOpen, 150);
+  } else {
+    window.addEventListener("load", function () {
+      setTimeout(launchBoomFireworksOnOpen, 150);
     });
   }
 
@@ -231,9 +368,7 @@
     typeIndex = 0;
     if (typeTimer) clearTimeout(typeTimer);
 
-    spawnHearts();
-    spawnBalloons();
-    spawnConfetti();
+    launchBoomFireworksOnOpen();
     typeNext();
     playBirthdaySound();
   }
