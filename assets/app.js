@@ -257,6 +257,13 @@
     if (!photoGallery) return;
     if (galleryIo) galleryIo.disconnect();
     var items = photoGallery.querySelectorAll(".gallery-item");
+    // Load only the first visible image immediately so mobile sees something fast
+    var firstImg = items[0] && items[0].querySelector("img[data-src]");
+    if (firstImg) loadGalleryImage(firstImg);
+
+    // Mobile: load one-at-a-time (small margin). Desktop: slightly more preload
+    var isNarrow = typeof window !== "undefined" && window.innerWidth < 600;
+    var rootMargin = isNarrow ? "0% 8%" : "20% 15%";
     galleryIo = new IntersectionObserver(
       function (entries) {
         entries.forEach(function (entry) {
@@ -266,9 +273,12 @@
           galleryIo.unobserve(entry.target);
         });
       },
-      { root: photoGallery, rootMargin: "30% 20%", threshold: 0.01 }
+      { root: photoGallery, rootMargin: rootMargin, threshold: 0.01 }
     );
-    items.forEach(function (item) { galleryIo.observe(item); });
+    items.forEach(function (item) {
+      var img = item.querySelector("img[data-src]");
+      if (img && img.src !== img.getAttribute("data-src")) galleryIo.observe(item);
+    });
   }
 
   function stopGalleryLazyLoad() {

@@ -272,6 +272,8 @@ h1 {
   box-shadow: 0 6px 20px rgba(0,0,0,0.18);
   background: rgba(255,255,255,0.15);
   scroll-snap-align: center;
+  content-visibility: auto;
+  contain-intrinsic-size: 280px 280px;
 }
 @media (min-width: 600px) {
   .gallery-item {
@@ -336,6 +338,14 @@ h1 {
   height: 100%;
   object-fit: cover;
   display: block;
+}
+.gallery-item img[data-src] {
+  background: rgba(255,255,255,0.12);
+}
+@supports (content-visibility: auto) {
+  .photo-gallery {
+    content-visibility: auto;
+  }
 }
 .gallery-label {
   font-size: 0.75rem;
