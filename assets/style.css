@@ -65,8 +65,8 @@ h1 {
   }
 }
 
-/* Birth date details card */
-.birth-details {
+/* Love note card */
+.love-note {
   margin-bottom: 1rem;
   padding: 1rem 1rem 1.1rem;
   background: rgba(255,255,255,0.18);
@@ -77,38 +77,37 @@ h1 {
   box-shadow: 0 8px 28px rgba(0,0,0,0.1);
   text-align: center;
 }
-.birth-details h2 {
+.love-note h2 {
+  font-family: "Tiro Devanagari Hindi", "Noto Serif Devanagari", "Noto Sans Devanagari", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
   font-size: clamp(0.8rem, 3vw, 0.95rem);
-  font-weight: 700;
+  font-weight: 800;
   color: rgba(255,255,255,0.95);
   text-transform: none;
   margin-bottom: 0.65rem;
   letter-spacing: 0.04em;
 }
-.birth-details .date-line {
-  font-size: clamp(1rem, 4vw, 1.25rem);
-  font-weight: 800;
-  color: #fff;
-  text-shadow: 0 1px 8px rgba(0,0,0,0.15);
-  margin-bottom: 0.5rem;
-  line-height: 1.4;
-}
-.birth-details .sub {
-  font-size: clamp(0.8rem, 3.2vw, 0.95rem);
+.love-note .np {
+  font-family: "Tiro Devanagari Hindi", "Noto Serif Devanagari", "Noto Sans Devanagari", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  font-size: clamp(0.95rem, 3.6vw, 1.06rem);
   font-weight: 600;
-  color: rgba(255,255,255,0.92);
-  line-height: 1.6;
-  margin-top: 0.35rem;
+  color: #fff;
+  text-shadow: 0 1px 8px rgba(0,0,0,0.18);
+  line-height: 1.85;
+  margin: 0.35rem 0;
 }
-.birth-details .divider {
-  height: 1px;
-  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.5), transparent);
-  margin: 0.65rem 0;
-}
-.birth-details .en {
-  font-size: clamp(0.75rem, 2.8vw, 0.88rem);
-  font-weight: 500;
-  color: rgba(255,255,255,0.85);
+.love-note .en {
+  font-family: "Great Vibes", "Noto Sans Devanagari", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  font-size: clamp(1.35rem, 6vw, 1.8rem);
+  font-weight: 900;
+  letter-spacing: 0.02em;
+  color: #ffe6f3;
+  text-shadow:
+    0 0 10px rgba(255, 230, 243, 0.75),
+    0 0 22px rgba(255, 105, 180, 0.65),
+    0 0 42px rgba(233, 30, 99, 0.55),
+    0 6px 22px rgba(0, 0, 0, 0.18);
+  line-height: 1.35;
+  margin-top: 0.65rem;
 }
 
 /* Message card: cake image + text inside same block */
